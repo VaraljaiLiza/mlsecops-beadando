@@ -1,5 +1,9 @@
 """Az előfeldolgozás automatikus tesztjei."""
 
+import contextlib
+import io
+import os
+import runpy
 import csv
 import tempfile
 import unittest
@@ -67,3 +71,26 @@ class TestPrepareDataset(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             prepare_dataset(self.input_path, self.output_path, 1)
+
+    def test_direct_execution(self) -> None:
+        raw_path = self.root / "data" / "raw" / "cardekho_dataset.csv"
+        raw_path.parent.mkdir(parents=True)
+        raw_path.write_text(
+            ",car_name,seats\n"
+            + "".join(f"{index},Honda,5\n" for index in range(3000)),
+            encoding="utf-8",
+        )
+        script_path = Path("src/preprocessing.py").resolve()
+        original_directory = Path.cwd()
+        output = io.StringIO()
+
+        try:
+            os.chdir(self.root)
+            with contextlib.redirect_stdout(output):
+                runpy.run_path(str(script_path), run_name="__main__")
+        finally:
+            os.chdir(original_directory)
+
+        self.assertIn("Elmentett adatsorok száma: 3000", output.getvalue())
+        result_path = self.root / "data" / "processed" / "cardekho_sample.csv"
+        self.assertTrue(result_path.is_file())
