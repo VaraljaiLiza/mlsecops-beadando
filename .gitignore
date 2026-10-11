@@ -1,0 +1,14 @@
+# Python virtuális környezet
+.venv/
+
+# Python gyorsítótár
+__pycache__/
+*.py[cod]
+
+# Tesztelés ideiglenes fájljai
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Helyi környezeti változók
+.env
