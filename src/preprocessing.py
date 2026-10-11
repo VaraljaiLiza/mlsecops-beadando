@@ -1,5 +1,6 @@
 """Az eredeti autóadatok tisztítása és reprodukálható mintavételezése."""
 
+import yaml
 import csv
 import random
 from pathlib import Path
@@ -53,8 +54,13 @@ def prepare_dataset(
 
 
 if __name__ == "__main__":
+    with Path("params.yaml").open(encoding="utf-8") as file:
+        parameters = yaml.safe_load(file)["preprocessing"]
+
     count = prepare_dataset(
         input_path=Path("data/raw/cardekho_dataset.csv"),
         output_path=Path("data/processed/cardekho_sample.csv"),
+        sample_size=parameters["sample_size"],
+        seed=parameters["random_seed"],
     )
     print(f"Elmentett adatsorok száma: {count}")

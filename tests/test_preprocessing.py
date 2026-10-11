@@ -80,6 +80,13 @@ class TestPrepareDataset(unittest.TestCase):
             + "".join(f"{index},Honda,5\n" for index in range(3000)),
             encoding="utf-8",
         )
+        (self.root / "params.yaml").write_text(
+            "preprocessing:\n"
+            "  sample_size: 3000\n"
+            "  random_seed: 42\n"
+            "  price_threshold: 600000\n",
+            encoding="utf-8",
+        )
         script_path = Path("src/preprocessing.py").resolve()
         original_directory = Path.cwd()
         output = io.StringIO()
