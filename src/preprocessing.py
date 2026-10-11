@@ -11,17 +11,21 @@ def prepare_dataset(
     output_path: Path,
     sample_size: int = 3000,
     seed: int = 42,
+    price_threshold: float = 600000,
 ) -> int:
     """Tisztított mintát ment, és visszaadja a mentett sorok számát."""
     if sample_size <= 0:
         raise ValueError("A mintaméretnek pozitívnak kell lennie.")
+    
+    if price_threshold <= 0:
+        raise ValueError("Az árhatárnak pozitívnak kell lennie.")
 
     with input_path.open(encoding="utf-8-sig", newline="") as file:
         reader = csv.DictReader(file)
         columns = reader.fieldnames
 
-        if columns is None or "" not in columns or "seats" not in columns:
-            raise ValueError("Hiányzik a sorszám vagy a seats oszlop.")
+        if columns is None or not {"", "seats", "selling_price"}.issubset(columns):
+            raise ValueError("Hiányzik a sorszám, a seats vagy a selling_price oszlop.")
 
         output_columns = ["id" if name == "" else name for name in columns]
         records: list[dict[str, str]] = []
@@ -43,6 +47,12 @@ def prepare_dataset(
         raise ValueError("Nincs elegendő sor a kért mintához.")
 
     sample = random.Random(seed).sample(records, sample_size)
+    output_columns.append("price_category")
+
+    for record in sample:
+        price = float(record["selling_price"])
+        record["price_category"] = str(int(price >= price_threshold))
+    
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
     with output_path.open("w", encoding="utf-8", newline="") as file:
@@ -62,5 +72,6 @@ if __name__ == "__main__":
         output_path=Path("data/processed/cardekho_sample.csv"),
         sample_size=parameters["sample_size"],
         seed=parameters["random_seed"],
+        price_threshold=parameters["price_threshold"],
     )
     print(f"Elmentett adatsorok száma: {count}")
