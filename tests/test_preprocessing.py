@@ -109,7 +109,7 @@ class TestPrepareDataset(unittest.TestCase):
         self.assertIn("Elmentett adatsorok száma: 3000", output.getvalue())
         result_path = self.root / "data" / "processed" / "cardekho_sample.csv"
         self.assertTrue(result_path.is_file())
-    
+
     def test_invalid_price_threshold(self) -> None:
         for threshold in [0, -1]:
             with self.subTest(threshold=threshold):

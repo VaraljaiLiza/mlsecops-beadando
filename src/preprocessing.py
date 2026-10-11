@@ -16,7 +16,7 @@ def prepare_dataset(
     """Tisztított mintát ment, és visszaadja a mentett sorok számát."""
     if sample_size <= 0:
         raise ValueError("A mintaméretnek pozitívnak kell lennie.")
-    
+
     if price_threshold <= 0:
         raise ValueError("Az árhatárnak pozitívnak kell lennie.")
 
@@ -52,7 +52,7 @@ def prepare_dataset(
     for record in sample:
         price = float(record["selling_price"])
         record["price_category"] = str(int(price >= price_threshold))
-    
+
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
     with output_path.open("w", encoding="utf-8", newline="") as file:
