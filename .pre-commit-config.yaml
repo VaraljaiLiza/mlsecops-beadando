@@ -1,0 +1,30 @@
+repos:
+  - repo: local
+    hooks:
+      - id: flake8
+        name: Flake8
+        entry: python -m flake8 .
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: pyright
+        name: Pyright
+        entry: python -m pyright
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: tests
+        name: Tests with coverage
+        entry: python -m coverage run -m unittest discover -s tests -v
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: coverage
+        name: Coverage threshold
+        entry: python -m coverage report
+        language: system
+        pass_filenames: false
+        always_run: true
