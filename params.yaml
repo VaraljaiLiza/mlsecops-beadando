@@ -1,0 +1,4 @@
+preprocessing:
+  sample_size: 3000
+  random_seed: 42
+  price_threshold: 600000
