@@ -1,0 +1,5 @@
+outs:
+- md5: d594f67e4608cfb0ab7177208f3252e0
+  size: 274252
+  hash: md5
+  path: cardekho_sample.csv
