@@ -22,3 +22,8 @@ training:
     - seller_type
     - fuel_type
     - transmission_type
+
+  model:
+    n_estimators: 100
+    max_depth: 10
+    random_seed: 42
