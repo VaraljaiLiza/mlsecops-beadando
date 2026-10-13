@@ -7,3 +7,4 @@ pre-commit==4.2.0
 numpy==2.2.1
 pandas==2.2.3
 scikit-learn==1.6.1
+mlflow==3.16.1
