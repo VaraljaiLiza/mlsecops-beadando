@@ -28,7 +28,7 @@ training:
     max_depth: 10
     random_seed: 42
 
-  mlflow:
+mlflow:
   tracking_uri: "http://127.0.0.1:5000"
   experiment_name: "cardekho-price-classification"
   registered_model_name: "cardekho-price-classifier"
