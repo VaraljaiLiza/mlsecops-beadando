@@ -2,3 +2,23 @@ preprocessing:
   sample_size: 3000
   random_seed: 42
   price_threshold: 600000
+
+training:
+  target: price_category
+  test_size: 0.2
+  random_seed: 42
+
+  numeric_features:
+    - vehicle_age
+    - km_driven
+    - mileage
+    - engine
+    - max_power
+    - seats
+
+  categorical_features:
+    - brand
+    - model
+    - seller_type
+    - fuel_type
+    - transmission_type
