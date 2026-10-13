@@ -63,10 +63,10 @@ class TestTracking(unittest.TestCase):
             model_logging.log_model.assert_called_once()
 
             arguments = model_logging.log_model.call_args.kwargs
-            self.assertIs(arguments["sk_model"], pipeline)
             self.assertEqual(
-                arguments["registered_model_name"], "test-model"
+                arguments["serialization_format"], "cloudpickle"
             )
+            self.assertIs(arguments["sk_model"], pipeline)
             self.assertIsNotNone(arguments["signature"])
             pd.testing.assert_frame_equal(
                 arguments["input_example"], data

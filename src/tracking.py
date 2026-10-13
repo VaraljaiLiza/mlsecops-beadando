@@ -38,6 +38,7 @@ def log_training_run(
         mlflow_sklearn.log_model(
             sk_model=pipeline,
             name="model",
+            serialization_format="cloudpickle",
             signature=signature,
             input_example=input_example,
             registered_model_name=registered_model_name,
