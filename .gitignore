@@ -12,3 +12,9 @@ htmlcov/
 
 # Helyi környezeti változók
 .env
+
+# Helyi MLflow adatbázis és artifactok
+mlflow.db
+mlflow.db-*
+mlruns/
+mlartifacts/
