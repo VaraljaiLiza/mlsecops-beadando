@@ -16,6 +16,7 @@ def train_model(
     seed: int = 42,
     n_estimators: int = 100,
     max_depth: int = 10,
+    model_seed: int = 42,
 ) -> tuple[Pipeline, dict[str, float]]:
     """Betanított pipeline-t és tesztadatokon mért eredményeket ad vissza."""
     features = numeric_features + categorical_features
@@ -42,7 +43,7 @@ def train_model(
         categorical_features=categorical_features,
         n_estimators=n_estimators,
         max_depth=max_depth,
-        seed=seed,
+        seed=model_seed,
     )
     pipeline.fit(train_data[features], train_target)
     predictions = pipeline.predict(test_data[features])

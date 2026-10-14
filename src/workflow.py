@@ -33,6 +33,7 @@ def run_training(
         seed=settings["random_seed"],
         n_estimators=model_settings["n_estimators"],
         max_depth=model_settings["max_depth"],
+        model_seed=model_settings["random_seed"],
     )
 
     features = (
@@ -52,7 +53,7 @@ def run_training(
         "n_estimators": model_settings["n_estimators"],
         "max_depth": model_settings["max_depth"],
         "split_seed": settings["random_seed"],
-        "model_seed": settings["random_seed"],
+        "model_seed": model_settings["random_seed"],
         "test_size": settings["test_size"],
         "sample_size": len(records),
         "price_threshold": config["preprocessing"]["price_threshold"],

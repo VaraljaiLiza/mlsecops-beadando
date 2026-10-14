@@ -30,7 +30,7 @@ class TestTrainingWorkflow(unittest.TestCase):
                     "model": {
                         "n_estimators": 10,
                         "max_depth": 3,
-                        "random_seed": 42,
+                        "random_seed": 123,
                     },
                 },
                 "mlflow": {
@@ -76,6 +76,7 @@ class TestTrainingWorkflow(unittest.TestCase):
                 )
                 self.assertEqual(training_arguments["test_size"], 0.2)
                 self.assertEqual(training_arguments["seed"], 42)
+                self.assertEqual(training_arguments["model_seed"], 123)
                 self.assertEqual(training_arguments["n_estimators"], 10)
                 self.assertEqual(training_arguments["max_depth"], 3)
 
@@ -104,6 +105,12 @@ class TestTrainingWorkflow(unittest.TestCase):
                 )
                 self.assertEqual(
                     logging_arguments["parameters"]["sample_size"], 2
+                )
+                self.assertEqual(
+                    logging_arguments["parameters"]["split_seed"], 42
+                )
+                self.assertEqual(
+                    logging_arguments["parameters"]["model_seed"], 123
                 )
 
                 expected_example = pd.DataFrame({

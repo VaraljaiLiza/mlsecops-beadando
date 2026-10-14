@@ -26,6 +26,7 @@ class TestTraining(unittest.TestCase):
             categorical_features=["brand"],
             n_estimators=10,
             max_depth=3,
+            model_seed=123,
         )
 
         self.assertEqual(
@@ -41,4 +42,7 @@ class TestTraining(unittest.TestCase):
         )
         self.assertTrue(
             hasattr(pipeline.named_steps["classifier"], "estimators_")
+        )
+        self.assertEqual(
+            pipeline.named_steps["classifier"].random_state, 123
         )
