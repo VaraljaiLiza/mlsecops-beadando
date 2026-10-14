@@ -1,5 +1,5 @@
 [tool.coverage.run]
-source = ["src", "tests"]
+source = ["src", "tests", "scripts"]
 
 [tool.coverage.report]
 fail_under = 95
@@ -11,3 +11,4 @@ typeCheckingMode = "standard"
 pythonVersion = "3.13"
 venvPath = "."
 venv = ".venv"
+
