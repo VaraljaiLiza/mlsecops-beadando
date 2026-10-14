@@ -16,6 +16,7 @@ from mlflow import MlflowClient
 from mlflow.exceptions import MlflowException
 from pydantic import BaseModel, ConfigDict, Field
 from sklearn.pipeline import Pipeline
+import os
 
 from src.workflow import run_training
 
@@ -64,9 +65,15 @@ class TrainRequest(BaseModel):
 
 
 def read_config() -> dict[str, Any]:
-    """Beolvassa a projekt beállításait."""
+    """Beolvassa a beállításokat, figyelembe véve a konténer címét."""
     with CONFIG_PATH.open(encoding="utf-8") as file:
-        return cast(dict[str, Any], yaml.safe_load(file))
+        config = cast(dict[str, Any], yaml.safe_load(file))
+
+    config["mlflow"]["tracking_uri"] = os.environ.get(
+        "MLFLOW_TRACKING_URI",
+        config["mlflow"]["tracking_uri"],
+    )
+    return config
 
 
 def save_event(

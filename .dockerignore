@@ -1,0 +1,16 @@
+.venv
+.git
+.dvc/cache
+__pycache__
+**/__pycache__
+.pytest_cache
+.coverage
+htmlcov
+logs
+reports
+screenshots
+mlruns
+mlartifacts
+mlflow-data
+mlflow.db*
+.env

@@ -7,6 +7,8 @@ from pathlib import Path
 
 import pandas as pd
 import yaml
+import os
+
 
 from src.tracking import log_training_run
 from src.training import train_model
@@ -23,6 +25,10 @@ def run_training(
     settings = config["training"]
     model_settings = settings["model"]
     tracking_settings = config["mlflow"]
+    tracking_settings["tracking_uri"] = os.environ.get(
+        "MLFLOW_TRACKING_URI",
+        tracking_settings["tracking_uri"],
+    )
     promotion = config["promotion"]
 
     with dataset_path.open(encoding="utf-8", newline="") as file:
