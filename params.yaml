@@ -32,3 +32,8 @@ mlflow:
   tracking_uri: "http://127.0.0.1:5000"
   experiment_name: "cardekho-price-classification"
   registered_model_name: "cardekho-price-classifier"
+
+promotion:
+  metric: balanced_accuracy
+  minimum_improvement: 0.0
+  model_alias: champion
