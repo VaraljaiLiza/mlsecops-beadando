@@ -21,3 +21,6 @@ mlartifacts/
 
 # Az API helyi kérés- és becslésnaplói
 logs/
+
+# Újragenerálható monitoring riportok
+reports/
