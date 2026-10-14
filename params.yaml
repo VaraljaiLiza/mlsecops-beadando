@@ -2,3 +2,38 @@ preprocessing:
   sample_size: 3000
   random_seed: 42
   price_threshold: 600000
+
+training:
+  target: price_category
+  test_size: 0.2
+  random_seed: 42
+
+  numeric_features:
+    - vehicle_age
+    - km_driven
+    - mileage
+    - engine
+    - max_power
+    - seats
+
+  categorical_features:
+    - brand
+    - model
+    - seller_type
+    - fuel_type
+    - transmission_type
+
+  model:
+    n_estimators: 100
+    max_depth: 10
+    random_seed: 42
+
+mlflow:
+  tracking_uri: "http://127.0.0.1:5000"
+  experiment_name: "cardekho-price-classification"
+  registered_model_name: "cardekho-price-classifier"
+
+promotion:
+  metric: balanced_accuracy
+  minimum_improvement: 0.0
+  model_alias: champion

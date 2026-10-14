@@ -4,3 +4,12 @@ PyYAML==6.0.2
 flake8==7.3.0
 pyright==1.1.407
 pre-commit==4.2.0
+numpy==2.2.1
+pandas==2.2.3
+scikit-learn==1.6.1
+mlflow==3.16.1
+fastapi==0.143.0
+uvicorn==0.54.0
+httpx==0.28.1
+evidently==0.7.20
+streamlit==1.50.0

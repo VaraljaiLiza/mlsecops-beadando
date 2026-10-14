@@ -12,3 +12,15 @@ htmlcov/
 
 # Helyi környezeti változók
 .env
+
+# Helyi MLflow adatbázis és artifactok
+mlflow.db
+mlflow.db-*
+mlruns/
+mlartifacts/
+
+# Az API helyi kérés- és becslésnaplói
+logs/
+
+# Újragenerálható monitoring riportok
+reports/
