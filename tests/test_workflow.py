@@ -38,6 +38,13 @@ class TestTrainingWorkflow(unittest.TestCase):
                     "experiment_name": "test-experiment",
                     "registered_model_name": "test-model",
                 },
+
+                "promotion": {
+                    "metric": "balanced_accuracy",
+                    "minimum_improvement": 0.0,
+                    "model_alias": "champion",
+                },
+
             }
             config_path.write_text(
                 yaml.safe_dump(config),
@@ -120,4 +127,17 @@ class TestTrainingWorkflow(unittest.TestCase):
                 pd.testing.assert_frame_equal(
                     logging_arguments["input_example"],
                     expected_example,
+                )
+
+                self.assertEqual(
+                    logging_arguments["model_alias"], "champion"
+                )
+                self.assertEqual(
+                    logging_arguments["promotion_metric"], "balanced_accuracy"
+                )
+                self.assertEqual(
+                    logging_arguments["minimum_improvement"], 0.0
+                )
+                self.assertEqual(
+                    len(logging_arguments["parameters"]["evaluation_id"]), 64
                 )
