@@ -24,3 +24,4 @@ RUN mkdir -p /app/mlflow-data /app/logs /app/reports \
 USER appuser
 
 CMD ["python", "-m", "uvicorn", "src.api:app", "--host", "0.0.0.0", "--port", "8000"]
+RUN dvc config --local core.no_scm true

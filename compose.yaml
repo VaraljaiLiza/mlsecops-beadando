@@ -44,7 +44,7 @@ services:
     command:
       - sh
       - -c
-      - python src/preprocessing.py && python -m scripts.train
+      - dvc pull && python src/preprocessing.py && python -m scripts.train
     environment:
       MLFLOW_TRACKING_URI: http://mlflow:5000
     volumes:
