@@ -1,0 +1,4 @@
+[core]
+    remote = github-data
+['remote "github-data"']
+    url = https://raw.githubusercontent.com/VaraljaiLiza/mlsecops-data/main/dvc-storage
